@@ -6,6 +6,7 @@ import {MatListModule} from '@angular/material/list';
 import { Message } from './model/message';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 
 
@@ -40,10 +41,9 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked  {
     if (this.user.roomNumber === 0) {
       this.router.navigate(['/']);
     }
-    console.log(this.user.roomNumber);
-    console.log(this.user.username);
+
     this.hubConnection = new signalR.HubConnectionBuilder()
-        .withUrl('http://localhost:11007/chatHub')
+        .withUrl(environment.apiUrl)
         .build();
 
     this.hubConnection.on('Join', (message: string) => this.alertify.success(message));
@@ -78,11 +78,11 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked  {
 
   pushMessage(m: Message) {
 
-    console.log(this.chatHistory);
+
     this.messages.push(m);
     // tslint:disable-next-line:max-line-length
     this.scrollToBottom();
-    console.log(this.chatHistory);
+
   }
   sendMessage(messageTextbox: string) {
     this.messageForm.reset();

@@ -1,0 +1,64 @@
+
+
+<div class="container">
+  <div id="heading">
+    
+      <span>Room:   {{user.roomNumber}}</span>
+  </div>
+  <div class="row">
+
+      <div class="col-md-10" style="padding-right:0px;">
+          <div  class="card">
+              <ul #chatHistory id="chatHistory" class="card-body">
+               <li   *ngFor="let message of messages">
+                 <div>
+                     <span class="name">{{message.senderName}}</span>
+                     <span class="time">{{message.sentAt | date:'shortTime' }}</span>   
+                </div>
+
+                <div *ngIf="message.senderName === user.username">
+                        <span class="MyMessage">{{message.text}}</span>
+                   </div>
+                      <div *ngIf="message.senderName !== user.username">
+                              <span class="message">{{message.text}}</span>
+                       </div>  
+               </li>
+
+              </ul>
+          </div>
+      </div>
+      
+
+
+      <div class="col-md-2 d-none d-md-block" style="padding-left:0px;">
+          <div class="user">
+              <ul id="userList" class="user-body">
+                <li *ngFor="let user of userList">
+                  {{ user }}
+                </li>
+              </ul>
+          </div>
+      </div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-12">
+          <form (ngSubmit)="sendMessage(messageTextbox)" id="chatForm" class="form-inline mt-2" #a="ngForm">
+              <input
+              type="text"
+              id="messageTextbox"
+              class="form-control"
+              ngModel
+              name="messageTextbox"
+              [(ngModel)]="messageTextbox"
+              required>
+              <button mat-raised-button	 color="primary"  [disabled]="!a.valid"> Send </button>
+
+          </form>
+            </div>
+      </div>
+  </div>
+
+
+

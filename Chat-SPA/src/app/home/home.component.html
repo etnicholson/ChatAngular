@@ -1,0 +1,68 @@
+
+<div class="row">
+
+      <div class="col-md-6 formarea">
+          <form (ngSubmit)="onSubmit()" #f="ngForm">
+              <div id="heading">
+                  Create Room
+
+              </div>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  class="form-control"
+                  ngModel
+                  name="username"
+                  required>
+              </div>
+
+              <button type="submit" 
+              class="btn btn-secondary"
+              [disabled]="!f.valid"
+              >Create</button>
+          </form>
+
+      </div>
+
+      <div class="col-md-6 formarea">
+          <form (ngSubmit)="onJoin()" #a="ngForm">
+              <div id="heading">
+                  Join Room
+
+              </div>
+              <div class="form-group ">
+                  <label> User Name</label>
+                  <input
+                  type="text"
+                  id="userNameJoin"
+                  class="form-control"
+                  ngModel
+                  name="userNameJoin"
+                  required>
+              </div>
+
+              <div class="form-group ">
+                  <label>Chatroom number</label>
+                  <input
+                  type="text"
+                  id="roomNumber"
+                  class="form-control"
+                  ngModel
+                  name="roomNumber"
+                  minlength="4"
+                  maxlength="4"
+                  required>
+              </div>
+
+              <button type="submit" class="btn btn-secondary"
+              [disabled]="!a.valid"
+              >Join</button>
+          </form>
+
+      </div>
+
+
+
+  </div>
